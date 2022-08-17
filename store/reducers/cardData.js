@@ -2,7 +2,7 @@ const cardData = {
     cardName: "joe biden",
     expiringYear: "00",
     expiringMonth: "00",
-    cardNumber: [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]],
+    cardNumber: "0000000000000000",
     cardCode: ""
 }
 
@@ -63,6 +63,13 @@ export const changeName = (cardName) => {
     return {
         type: '@cardData/changeName',
         payload: cardName
+    }
+}
+
+export const changeCardNumber = (cardNumber) => {
+    return {
+        type: '@cardData/changeCardNumber',
+        payload: cardNumber
     }
 }
 

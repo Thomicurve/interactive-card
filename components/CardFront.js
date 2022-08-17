@@ -1,13 +1,11 @@
 import Image from "next/image"
 import CardLogo from "../public/card-logo.svg"
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { changeCardNumber } from "../store/reducers/cardData";
 
 export default function CardFront() {
-    const [cardNumbers, setCardNumbers] = useState([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]);
-    const { cardName, expiringMonth, expiringYear } = useSelector(state => state)
-
-
+    const { cardName, expiringMonth, expiringYear, cardNumber } = useSelector(state => state)
+    const dispatch = useDispatch();
     return (
         <>
             <article className="absolute top-36 pl-10">
@@ -15,11 +13,14 @@ export default function CardFront() {
                     <Image src={CardLogo} width={50} height={27} />
                 </div>
                 <div className="mt-16 text-white tracking-wider">
-                    <div className="cardNumbers-container">
-                        {
-                            cardNumbers.map(num => (
-                                num.map((n, index) => <p key={n + index} className={`inline-block ${index == 3 && 'mr-5'}`}>{n}</p>)
-                            ))
+                    <div className="cardNumbers-container pl-3">
+                        {   
+                            cardNumber.length <= 0 ? 
+                            dispatch(changeCardNumber("0000000000000000")) :
+                            Array.from(cardNumber).map((num, index) => {
+                                const result = Number.isInteger(((index+1) / 4));
+                                return <p key={num + index} className={`inline-block ${result ? 'mr-5' : ''}`}>{num}</p>
+                            })
                         }
                     </div>
                     <div className="flex items-center justify-between mt-3 uppercase">

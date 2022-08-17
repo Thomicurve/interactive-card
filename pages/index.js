@@ -1,5 +1,5 @@
 import CardsContainer from '../components/CardsContainer'
-import Form from '../components/Form'
+import FormContainer from '../components/FormContainer'
 
 export default function Home() {
 
@@ -7,7 +7,7 @@ export default function Home() {
     <>
       <section className='flex'>
         <CardsContainer />
-        <Form/>
+        <FormContainer/>
       </section>
     </>
   )
