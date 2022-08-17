@@ -1,12 +1,14 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 
 export default function CardBack() {
-    const [securityCode,  setSecurityCode] = useState("000")
+    const cardCode = useSelector(state => state.cardCode);
 
     return (
         <>
             <article className="absolute top-96 pl-10">
-                <p className="text-white absolute right-7 font-bold tracking-widest">{securityCode}</p>
+                <p className="text-white absolute right-7 font-bold tracking-widest">
+                    {cardCode.length <= 0 ? "***" : cardCode}
+                </p>
             </article>
 
             <style jsx>{`

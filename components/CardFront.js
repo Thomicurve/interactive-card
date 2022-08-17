@@ -5,10 +5,9 @@ import { useSelector } from "react-redux";
 
 export default function CardFront() {
     const [cardNumbers, setCardNumbers] = useState([[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]);
-    const [userName, setUserName] = useState('jane appleseed');
-    const [expiringDate, setExpiringDate] = useState([0, 0, 0, 0])
-    const cardName = useSelector(state => state)
-    console.log(cardName)
+    const { cardName, expiringMonth, expiringYear } = useSelector(state => state)
+
+
     return (
         <>
             <article className="absolute top-36 pl-10">
@@ -19,14 +18,17 @@ export default function CardFront() {
                     <div className="cardNumbers-container">
                         {
                             cardNumbers.map(num => (
-                                num.map((n, index) => <p className={`inline-block ${index == 3 && 'mr-5'}`}>{n}</p>)
+                                num.map((n, index) => <p key={n + index} className={`inline-block ${index == 3 && 'mr-5'}`}>{n}</p>)
                             ))
                         }
                     </div>
                     <div className="flex items-center justify-between mt-3 uppercase">
-                        <p className="usernameText">{cardName}</p>
+                        <p className="usernameText">{cardName.length <= 0 ? "Fullname" : cardName}</p>
                         <div className="mr-7">
-                            <p>{`${expiringDate[0]}${expiringDate[1]}/${expiringDate[2]}${expiringDate[3]}`}</p>
+                            <p>
+                                {expiringMonth.length <= 0 ? '00' : expiringMonth}/
+                                {expiringYear.length <= 0 ? '00' : expiringYear}
+                            </p>
                         </div>
                     </div>
                 </div>

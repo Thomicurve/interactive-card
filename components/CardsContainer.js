@@ -1,19 +1,22 @@
-import Image from "next/image"
-import backgroundDesktop from '../public/bg-main-desktop.png'
 import CardBack from "./CardBack"
 import CardFront from "./CardFront"
 
 
-export default function CardsContainer () {
+export default function CardsContainer() {
     return (
         <>
             <article className="relative">
-                <Image src={backgroundDesktop} width={450} height={700}/>
-                <CardFront/>
-                <CardBack/>
+                <div></div>
+                <CardFront />
+                <CardBack />
             </article>
             <style jsx>{`
-
+                div {
+                    background: url('bg-main-desktop.png') no-repeat;
+                    background-size: cover;
+                    width: 500px;
+                    height: 100vh;
+                }
             `}</style>
         </>
     )
